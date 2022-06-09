@@ -7,6 +7,7 @@ import HomePage from './pages/homePage/Homepage.component'
 import {Route , Switch,Redirect} from 'react-router-dom'
 import Shop from './pages/shop/Shop.component';
 import Header from './components/header/header.component';
+import CheckoutPage from './pages/checkout/checkout.component';
 import SignIn from './pages/signIn-signUp/sign-in-sign-up.component';
 import React from 'react';
 import { auth,createUserProfileDoc } from './firebase/firebase.utils';
@@ -48,6 +49,7 @@ class App extends React.Component {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/shop" component={Shop} />
+        <Route exact path='/checkout' component={CheckoutPage} />
         <Route exact path="/signin" render={()=> this.props.currentUser ? (<Redirect to="/"/>) : (<SignIn/>)} />
   
       </Switch>

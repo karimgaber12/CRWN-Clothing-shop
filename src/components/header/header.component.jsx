@@ -7,8 +7,10 @@ import { ReactComponent as Logo } from '../../assests/crown.svg'
  import {Link} from 'react-router-dom'
 import './header.style.scss'
 import { auth } from '../../firebase/firebase.utils';
+import CartIcon from "../cart-icon/cart-icon.component";
+import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 
-const Header = ({currentUser}) => ( // currentUser now will get it from root-reducer not app.js
+const Header = ({currentUser,hidden}) => ( // currentUser now will get it from root-reducer not app.js
         <div className='header'>
             <Link className="logo-container" to="/">
                 <Logo className="logo"/>
@@ -30,13 +32,19 @@ const Header = ({currentUser}) => ( // currentUser now will get it from root-red
                      SIGN IN
                 </Link>
                )}
+               <CartIcon/>
             </div>
+            {
+                hidden ? null : <CartDropdown/>
+
+            }
              </div>
 );
 
     // to get user-reducer from root-reducer and then get currentUser from user-reducer 
-    const mapStateToProps = state => ({
-        currentUser: state.user.currentUser
-      });
+    const mapStateToProps = ({user:{ currentUser }, cart:{ hidden }}) => ({
+        currentUser,
+        hidden
+    })
       
 export default connect(mapStateToProps)(Header);

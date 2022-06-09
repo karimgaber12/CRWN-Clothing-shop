@@ -7,10 +7,10 @@ function CollectionPreview({title,items}) {
             <h1 className="title">{title.toUpperCase()}</h1>
             <div className="preview">
                 {/*use filter to display only 4 items in collection preview*/}
-                {items.filter((item,index)=> index < 4).map(({id,...otherItemsProps}) => (
-                    <CollectionItem key={id}{...otherItemsProps}/>
-                ))
-                }
+                {items.filter((item,index)=> index < 4).map(item => (
+                    <CollectionItem key={item.id} item = {item}/>
+                ))}
+                
             </div>
         </div>
     )
